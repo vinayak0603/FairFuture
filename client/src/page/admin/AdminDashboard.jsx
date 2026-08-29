@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import ApplicationDetailModal from './ApplicationDetailModal';
 import AddLeadModal from './AddLeadModal';
+import { getApiUrl } from '../../lib/api';
 
 const STATUS_LIST = ['All', 'Pending', 'Contacted', 'In Review', 'Approved', 'Closed'];
 
@@ -67,7 +68,7 @@ export default function AdminDashboard({ admin, onLogout }) {
         queryParams.append('search', search.trim());
       }
 
-      const res = await fetch(`/api/applications?${queryParams.toString()}`, {
+      const res = await fetch(getApiUrl(`/api/applications?${queryParams.toString()}`), {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -97,7 +98,7 @@ export default function AdminDashboard({ admin, onLogout }) {
   const fetchAnalytics = useCallback(async () => {
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch('/api/applications/analytics/overview', {
+      const res = await fetch(getApiUrl('/api/applications/analytics/overview'), {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -118,7 +119,7 @@ export default function AdminDashboard({ admin, onLogout }) {
   const handleUpdateStatus = async (id, newStatus) => {
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`/api/applications/${id}/status`, {
+      const res = await fetch(getApiUrl(`/api/applications/${id}/status`), {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -149,7 +150,7 @@ export default function AdminDashboard({ admin, onLogout }) {
   const handleAddNote = async (id, text) => {
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`/api/applications/${id}/notes`, {
+      const res = await fetch(getApiUrl(`/api/applications/${id}/notes`), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -177,7 +178,7 @@ export default function AdminDashboard({ admin, onLogout }) {
   const handleDeleteApplication = async (id) => {
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch(`/api/applications/${id}`, {
+      const res = await fetch(getApiUrl(`/api/applications/${id}`), {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });

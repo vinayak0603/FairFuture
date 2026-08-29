@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, Plus, AlertCircle } from 'lucide-react';
+import { getApiUrl } from '../../lib/api';
 
 const COUNTRIES = [
   "Australia", "Canada", "Dubai (UAE)", "France", "Germany",
@@ -68,7 +69,7 @@ export default function AddLeadModal({ onClose, onAddLead }) {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('/api/applications', {
+      const res = await fetch(getApiUrl('/api/applications'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

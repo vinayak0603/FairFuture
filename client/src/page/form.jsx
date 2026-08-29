@@ -2,6 +2,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import testImg from "../assets/test.png";
 import SEO from "../components/SEO";
+import { getApiUrl } from "../lib/api";
 
 const COUNTRIES = [
     "Australia", "Canada", "Dubai (UAE)", "France", "Germany",
@@ -177,7 +178,7 @@ export default function ConsultationForm() {
         setSubmitError("");
         setSubmitting(true);
         try {
-            const res = await fetch("/api/applications", {
+            const res = await fetch(getApiUrl("/api/applications"), {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form),
