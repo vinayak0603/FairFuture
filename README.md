@@ -4,6 +4,16 @@ A state-of-the-art, high-performance web application built for **Fair Future Edu
 
 ---
 
+## 🚀 Live Demo Links
+
+| Page | Direct Link | Live Shield Badge |
+| :--- | :--- | :--- |
+| 🏠 **Landing Page** | [https://fairfuture-gozoop.vercel.app/](https://fairfuture-gozoop.vercel.app/) | [![Landing Page](https://img.shields.io/badge/🌐_Live_Site-Landing_Page-16243a?style=for-the-badge&logo=vercel&logoColor=white)](https://fairfuture-gozoop.vercel.app/) |
+| 📝 **Consultation Form** | [https://fairfuture-gozoop.vercel.app/form](https://fairfuture-gozoop.vercel.app/form) | [![Consultation Form](https://img.shields.io/badge/📝_Live_Site-Booking_Form-233d63?style=for-the-badge&logo=vercel&logoColor=white)](https://fairfuture-gozoop.vercel.app/form) |
+| 🛡️ **Admin Dashboard** | [https://fairfuture-gozoop.vercel.app/admin](https://fairfuture-gozoop.vercel.app/admin) | [![Admin Dashboard](https://img.shields.io/badge/🛡️_Admin_Portal-Dashboard-0284c7?style=for-the-badge&logo=vercel&logoColor=white)](https://fairfuture-gozoop.vercel.app/admin) |
+
+---
+
 ## 🌐 Pages & User Experience Overview
 
 ### 🏠 1. Landing Page (`/`)
