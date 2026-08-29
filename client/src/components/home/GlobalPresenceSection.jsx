@@ -16,7 +16,6 @@ export default function GlobalPresenceSection() {
         height="100%"
       >
         <ScrollReveal delay={0.1} className="h-full flex flex-col items-center justify-center px-6 md:px-12 text-center space-y-6">
-
           {/* Label tag */}
           <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-sky-300/80 block">
             Trusted Worldwide
@@ -28,7 +27,7 @@ export default function GlobalPresenceSection() {
           </h2>
 
           {/* CTA Button */}
-          <button className="shiny-cta pl-6 pr-2 py-2.5 group cursor-pointer" onClick={() => navigate('/form')}>
+          <button className="shiny-cta pl-6 pr-2 py-2.5 group" onClick={() => navigate('/form')}>
             <span>
               Book Free Consultation
               <div className="bg-white rounded-full w-6 h-6 flex items-center justify-center text-[#233d63] ml-3">
@@ -38,7 +37,6 @@ export default function GlobalPresenceSection() {
               </div>
             </span>
           </button>
-
         </ScrollReveal>
       </Velaris>
     </div>

@@ -8,7 +8,7 @@ export default function AboutSection() {
       <ScrollReveal delay={0.2} direction="right" className="absolute left-8 xl:left-16 top-16 w-[180px] xl:w-[220px] aspect-[4/5] rounded-[24px] overflow-hidden shadow-lg hidden lg:block border border-slate-100 hover:scale-[1.02] transition-transform duration-300">
         <img
           src="https://images.pexels.com/photos/8962372/pexels-photo-8962372.jpeg"
-          alt="About us student smiling"
+          alt="About us patient smiling"
           className="w-full h-full object-cover"
         />
       </ScrollReveal>
@@ -50,7 +50,8 @@ export default function AboutSection() {
               <ScrollReveal
                 key={i}
                 delay={0.2 + i * 0.05}
-                className={`flex flex-col items-center text-center ${i === 4 ? 'col-span-2 md:col-span-1' : 'col-span-1'}`}
+                className={`flex flex-col items-center text-center ${i === 4 ? 'col-span-2 md:col-span-1' : 'col-span-1'
+                  }`}
               >
                 <span
                   className="text-4xl sm:text-5xl text-[#233d63] tracking-tight leading-none mb-1.5 font-bold"
@@ -64,6 +65,33 @@ export default function AboutSection() {
               </ScrollReveal>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Right Floating Image (Desktop) */}
+      <div className="absolute right-8 xl:right-16 bottom-16 w-[180px] xl:w-[220px] aspect-[4/5] rounded-[24px] overflow-hidden shadow-xl hidden lg:block border border-slate-100 hover:scale-[1.02] transition-transform duration-300">
+        <img
+          src="https://images.pexels.com/photos/5965863/pexels-photo-5965863.jpeg"
+          alt="About us counselor smiling"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* Mobile Floating Images Row (visible only below desktop) */}
+      <div className="mt-12 flex justify-center space-x-4 lg:hidden w-full">
+        <div className="w-[140px] aspect-[4/5] rounded-[16px] overflow-hidden shadow-md">
+          <img
+            src="https://images.pexels.com/photos/8962372/pexels-photo-8962372.jpeg"
+            alt="About us patient smiling"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="w-[140px] aspect-[4/5] rounded-[16px] overflow-hidden shadow-md">
+          <img
+            src="https://images.pexels.com/photos/5965863/pexels-photo-5965863.jpeg"
+            alt="About us counselor smiling"
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
     </section>

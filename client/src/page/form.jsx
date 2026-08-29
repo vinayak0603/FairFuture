@@ -209,31 +209,21 @@ export default function ConsultationForm() {
                     
                     {/* Top: Brand Header */}
                     <div>
-                        <div className="flex items-center justify-between w-full">
-                            <button onClick={() => navigate('/')} className="flex items-center space-x-3 text-left cursor-pointer group">
-                                <div className="w-9 h-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current text-white">
-                                        <circle cx="12" cy="12" r="10" fill="currentColor" />
-                                        <rect x="2" y="10.8" width="20" height="2.4" fill="#16243a" />
-                                        <rect x="10.8" y="2" width="2.4" height="20" fill="#16243a" />
-                                        <circle cx="12" cy="12" r="4.2" fill="#16243a" />
-                                        <circle cx="12" cy="12" r="2.2" fill="currentColor" />
-                                    </svg>
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="font-heading font-extrabold text-sm text-white tracking-widest uppercase">FAIR FUTURE</span>
-                                    <span className="text-[10px] text-white/50 tracking-wider">EDUCATION CONSULTANCY</span>
-                                </div>
-                            </button>
-
-                            {/* Return to Home button (Visible on Mobile in top header) */}
-                            <button
-                                onClick={() => navigate('/')}
-                                className="lg:hidden text-xs font-semibold text-white/80 hover:text-white bg-white/10 border border-white/15 px-3 py-1.5 rounded-full transition-colors flex items-center space-x-1 cursor-pointer"
-                            >
-                                <span>← Return to Home</span>
-                            </button>
-                        </div>
+                        <button onClick={() => navigate('/')} className="flex items-center space-x-3 text-left cursor-pointer group">
+                            <div className="w-9 h-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current text-white">
+                                    <circle cx="12" cy="12" r="10" fill="currentColor" />
+                                    <rect x="2" y="10.8" width="20" height="2.4" fill="#16243a" />
+                                    <rect x="10.8" y="2" width="2.4" height="20" fill="#16243a" />
+                                    <circle cx="12" cy="12" r="4.2" fill="#16243a" />
+                                    <circle cx="12" cy="12" r="2.2" fill="currentColor" />
+                                </svg>
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="font-heading font-extrabold text-sm text-white tracking-widest uppercase">FAIR FUTURE</span>
+                                <span className="text-[10px] text-white/50 tracking-wider">EDUCATION CONSULTANCY</span>
+                            </div>
+                        </button>
 
                         {/* Vertical Step Timeline (Desktop) */}
                         <div className="mt-8 hidden lg:flex flex-col space-y-6 relative pl-3">
@@ -283,8 +273,8 @@ export default function ConsultationForm() {
                         </div>
                     </div>
 
-                    {/* Bottom Sidebar Area: Desktop Only */}
-                    <div className="mt-6 pt-4 border-t border-white/10 hidden lg:flex flex-col justify-end">
+                    {/* Bottom Sidebar Area: Brand Test Image (test.png) replacing dog image */}
+                    <div className="mt-6 pt-4 border-t border-white/10 flex flex-col justify-end">
                         <div className="flex items-center space-x-3.5 mb-4">
                             <div className="w-16 h-16 shrink-0 flex items-center justify-center">
                                 <img
@@ -301,7 +291,7 @@ export default function ConsultationForm() {
 
                         <button
                             onClick={() => navigate('/')}
-                            className="text-left text-xs font-semibold text-white/50 hover:text-white transition-colors underline underline-offset-4 cursor-pointer"
+                            className="text-left text-xs font-semibold text-white/50 hover:text-white transition-colors underline underline-offset-4"
                         >
                             ← Return to homepage
                         </button>

@@ -1,67 +1,48 @@
 import React from 'react';
-import selectionImg from '../../assets/process/selection.png';
-import processingImg from '../../assets/process/processing.png';
-import moneyImg from '../../assets/process/money.png';
-import visaImg from '../../assets/process/visa.png';
-import testImg from '../../assets/test.png';
 import Velaris from '../Velaris';
 import ScrollReveal from '../ScrollReveal';
+
+import testImg from '../../assets/test.png';
+import moneyImg from '../../assets/process/money.png';
+import visaImg from '../../assets/process/visa.png';
+import processingImg from '../../assets/process/processing.png';
+import selectionImg from '../../assets/process/selection.png';
 
 export default function ProcessSection() {
   const processScrollRef = React.useRef(null);
 
-  const processSteps = [
+  const steps = [
     {
-      num: '01',
-      title: 'Free Profile Evaluation',
-      desc: 'Connect with certified study abroad counselors to assess your academic background, career goals, and preferred countries.',
-      tag: 'Step 01',
-      color: '#233d63',
-      img: testImg
-    },
-    {
-      num: '02',
-      title: 'Course & University Selection',
-      desc: 'Shortlist top ranked global universities matching your budget, program level, and scholarship eligibility.',
-      tag: 'Step 02',
-      color: '#1b2a47',
+      step: "STEP 1",
+      title: "Selection",
+      desc: "Program, University and Country Selection",
       img: selectionImg
     },
     {
-      num: '03',
-      title: 'Application & Admission Offer',
-      desc: 'Seamless document preparation, SOP review, and fast-track application submission for quick offer letters.',
-      tag: 'Step 03',
-      color: '#2d4f7c',
+      step: "STEP 2",
+      title: "Processing",
+      desc: "University Application Processing",
       img: processingImg
     },
     {
-      num: '04',
-      title: 'Scholarship & Fee Assistance',
-      desc: 'Explore fee payment options, educational loan assistance, GIC setup, and scholarship applications.',
-      tag: 'Step 04',
-      color: '#16243a',
+      step: "STEP 3",
+      title: "Tuition Fees",
+      desc: "Tuition Fee Payment Assistance",
       img: moneyImg
     },
     {
-      num: '05',
-      title: 'Student Visa & Pre-Departure',
-      desc: 'End-to-end visa filing, mock interview prep, medical guidance, and pre-departure briefings.',
-      tag: 'Step 05',
-      color: '#0d1b2e',
+      step: "STEP 4",
+      title: "Visa Approval",
+      desc: "Visa Application and Approval guidance",
       img: visaImg
+    },
+    {
+      step: "STEP 5",
+      title: "Departure",
+      desc: "Travel and Accommodation assistance",
+      img: testImg
     }
   ];
-
-  const scrollProcess = (direction) => {
-    if (processScrollRef.current) {
-      const scrollAmount = 360;
-      processScrollRef.current.scrollBy({
-        left: direction * scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   return (
     <section id="process" className="w-full bg-[#f8f9fa] py-14 lg:py-20 px-6 md:px-8 lg:px-10 border-t border-slate-100/50 text-slate-900 font-sans">
@@ -81,78 +62,83 @@ export default function ProcessSection() {
 
         {/* Timeline Container with Side Navigation Arrows */}
         <div className="relative w-full">
-          {/* Left Arrow Button */}
+          {/* Left Arrow Button (Mobile/Tablet) */}
           <button
-            onClick={() => scrollProcess(-1)}
-            aria-label="Scroll process timeline left"
-            className="absolute -left-3 sm:-left-5 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 text-slate-700 hover:text-white hover:bg-[#233d63] hover:border-[#233d63] flex items-center justify-center shadow-lg transition-all duration-200 cursor-pointer active:scale-95"
+            onClick={() => {
+              if (processScrollRef.current) {
+                const scrollAmount = processScrollRef.current.clientWidth * 0.85;
+                processScrollRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+              }
+            }}
+            aria-label="Previous step"
+            className="lg:hidden absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-30 w-11 h-11 rounded-full bg-white/75 backdrop-blur-md border border-white/60 shadow-lg flex items-center justify-center text-[#233d63] hover:bg-white active:scale-95 transition-all"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
 
-          {/* Right Arrow Button */}
+          {/* Right Arrow Button (Mobile/Tablet) */}
           <button
-            onClick={() => scrollProcess(1)}
-            aria-label="Scroll process timeline right"
-            className="absolute -right-3 sm:-right-5 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 text-slate-700 hover:text-white hover:bg-[#233d63] hover:border-[#233d63] flex items-center justify-center shadow-lg transition-all duration-200 cursor-pointer active:scale-95"
+            onClick={() => {
+              if (processScrollRef.current) {
+                const scrollAmount = processScrollRef.current.clientWidth * 0.85;
+                processScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+              }
+            }}
+            aria-label="Next step"
+            className="lg:hidden absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-30 w-11 h-11 rounded-full bg-white/75 backdrop-blur-md border border-white/60 shadow-lg flex items-center justify-center text-[#233d63] hover:bg-white active:scale-95 transition-all"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
 
-          {/* Desktop connecting track line */}
-          <div className="hidden lg:block absolute top-[44%] left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-[#233d63]/25 z-0 pointer-events-none" />
-
-          {/* Scrollable Timeline Grid */}
+          {/* Steps Carousel / Grid */}
           <div
             ref={processScrollRef}
-            className="flex gap-6 overflow-x-auto py-6 px-4 scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="flex lg:grid lg:grid-cols-5 gap-6 overflow-x-auto lg:overflow-visible py-4 lg:py-0 px-1 scroll-smooth snap-x snap-mandatory relative z-10 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
-            {processSteps.map((stepObj, idx) => (
+            {steps.map((stepObj, i) => (
               <div
-                key={idx}
-                className={`flex-shrink-0 w-[280px] sm:w-[320px] lg:w-[340px] snap-start relative group ${
-                  idx % 2 === 1 ? 'lg:translate-y-6' : 'lg:-translate-y-2'
-                }`}
+                key={i}
+                className="w-[calc(100vw-56px)] max-w-[340px] sm:w-[320px] lg:w-full flex-shrink-0 snap-center aspect-[1/1.24] sm:aspect-[1/1.45] rounded-[16px] overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 group relative z-10"
               >
                 <Velaris
-                  bg={stepObj.color}
-                  colors={['#2d4f7c', '#60a5fa', '#1b2a47', '#3b6aa0']}
-                  speed={0.8}
-                  grain={0.2}
+                  bg="#0f1827"
+                  colors={['#142033', '#16243a', '#121d2d', '#152236']}
+                  speed={0.6}
+                  grain={0.15}
                   height="100%"
                 >
-                  <div className="bg-[#233d63]/20 border border-slate-100/20 rounded-[28px] p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between h-[420px] sm:h-[440px]">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-white/10 text-white border border-white/15">
-                          {stepObj.tag}
-                        </span>
-                        <span className="font-heading font-black text-3xl text-white/40 group-hover:text-white/80 transition-colors">
-                          {stepObj.num}
-                        </span>
-                      </div>
+                  <div className="h-full p-6 flex flex-col justify-between text-white relative z-10 border border-white/10 rounded-[16px]">
 
-                      <div className="w-full h-36 rounded-2xl overflow-hidden bg-black/20 border border-white/10 relative">
+                    {/* Top Content: Step & Title */}
+                    <div className="space-y-1 text-center">
+                      <span className="text-[10px] font-bold text-sky-300/90 uppercase tracking-widest block">
+                        {stepObj.step}
+                      </span>
+                      <h3 className="font-heading font-extrabold text-white text-lg sm:text-xl tracking-tight leading-tight">
+                        {stepObj.title}
+                      </h3>
+                    </div>
+
+                    {/* Middle Content: Icon & Wave Grid Divider */}
+                    <div className="w-full flex flex-col items-center justify-center py-2 relative">
+                      <div className="w-full flex items-center justify-center overflow-visible group-hover:scale-110 transition-transform duration-300">
                         <img
                           src={stepObj.img}
-                          alt={stepObj.title}
-                          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                          alt="Process Icon"
+                          className="w-48 h-48 sm:w-32 sm:h-32 object-contain filter drop-shadow-[0_15px_20px_rgba(0,0,0,0.55)]"
                         />
                       </div>
                     </div>
 
-                    <div className="space-y-2 text-left pt-2">
-                      <h3 className="font-heading font-bold text-lg sm:text-xl text-white leading-tight">
-                        {stepObj.title}
-                      </h3>
-                      <p className="text-white/70 text-xs leading-relaxed line-clamp-3">
-                        {stepObj.desc}
-                      </p>
-                    </div>
+                    {/* Bottom Content: Step Description */}
+                    <p className="text-white/80 text-[11px] sm:text-xs leading-relaxed text-center font-normal mb-2 mx-auto max-w-[190px]">
+                      {stepObj.desc}
+                    </p>
+
                   </div>
                 </Velaris>
               </div>
