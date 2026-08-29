@@ -7,8 +7,8 @@ export default function SEO({
   title = "Fair Future | Premier Overseas Education Consultancy & Study Abroad Guidance",
   description = "Transform your global education dreams with Fair Future Education Consultancy. 18+ years of excellence, 12,000+ visa successes, expert counseling for UK, USA, Canada, Australia, Ireland & Germany.",
   keywords = "study abroad consultancy, overseas education counselor, foreign university admissions, student visa guidance, Fair Future, UK study visa, Canada student visa, Australia study visa",
-  ogImage = "https://fairfuture.com/og-image.jpg",
-  ogUrl = "https://fairfuture.com",
+  ogImage = "https://fairfuture-gozoop.vercel.app/og-banner.jpg",
+  ogUrl = "https://fairfuture-gozoop.vercel.app",
   noindex = false,
 }) {
   useEffect(() => {
@@ -34,10 +34,11 @@ export default function SEO({
     setMetaTag('meta[name="keywords"]', keywords);
     setMetaTag('meta[name="robots"]', noindex ? 'noindex, nofollow' : 'index, follow');
 
-    // Open Graph / Facebook
+    // Open Graph / WhatsApp / Facebook
     setMetaTag('meta[property="og:title"]', title);
     setMetaTag('meta[property="og:description"]', description);
     setMetaTag('meta[property="og:image"]', ogImage);
+    setMetaTag('meta[property="og:image:secure_url"]', ogImage);
     setMetaTag('meta[property="og:url"]', ogUrl || window.location.href);
     setMetaTag('meta[property="og:type"]', 'website');
     setMetaTag('meta[property="og:site_name"]', 'Fair Future Education Consultancy');
