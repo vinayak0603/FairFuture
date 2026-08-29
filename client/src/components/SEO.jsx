@@ -7,7 +7,7 @@ export default function SEO({
   title = "Fair Future | Premier Overseas Education Consultancy & Study Abroad Guidance",
   description = "Transform your global education dreams with Fair Future Education Consultancy. 18+ years of excellence, 12,000+ visa successes, expert counseling for UK, USA, Canada, Australia, Ireland & Germany.",
   keywords = "study abroad consultancy, overseas education counselor, foreign university admissions, student visa guidance, Fair Future, UK study visa, Canada student visa, Australia study visa",
-  ogImage = "https://fairfuture-gozoop.vercel.app/og-banner.jpg",
+  ogImage = "https://fairfuture-gozoop.vercel.app/og-banner.jpg?v=3",
   ogUrl = "https://fairfuture-gozoop.vercel.app",
   noindex = false,
 }) {
