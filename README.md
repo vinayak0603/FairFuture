@@ -1,164 +1,145 @@
-# 🎓 Fair Future — Education Consultancy & Admin Lead Portal
+# 🎓 Fair Future — Overseas Education Consultancy Web Application
 
-A state-of-the-art, high-performance web application and administrative lead management system built for **Fair Future Education Consultancy** (Kerala's premier overseas education consultancy with 18+ years of excellence and 12,000+ student visa successes).
+A state-of-the-art, high-performance web application built for **Fair Future Education Consultancy** (Kerala's premier overseas education consultancy with 18+ years of excellence, 12,000+ visa successes, and 500+ university representations).
 
 ---
 
-## 🚀 Key Features
+## 🌐 Pages & User Experience Overview
 
-### 🌐 Public Web Application
-- **Hero & Interactive Sections**: Smooth entrance animations, floating badge widgets, and responsive layout.
-- **Dynamic Navbar with Scroll Spy**: Automatically highlights active sections (`About Us`, `Why Us`, `Our Process`, `Testimonials`) as the user scrolls. Logo click smoothly returns to the top Hero section.
-- **Multi-Step Consultation Form (`/form`)**: 4-step interactive application form collecting applicant details, study goals, preferred countries, education history, budget, and timeline with real-time validation.
-- **Optimized Performance**: Capped loader threshold (<800ms) ensuring instant sub-second page rendering and smooth visual transition.
-- **Complete SEO & Metadata**: Full primary meta tags, Open Graph (OG), Twitter cards, and Schema.org `EducationalOrganization` JSON-LD structured data.
+### 🏠 1. Landing Page (`/`)
+The main landing page is designed with an Apple-grade, sleek UI/UX aesthetic, smooth entrance animations, and interactive section components:
 
-### 🛡️ Protected Admin Dashboard (`/admin`)
-- **JWT Protection & Authentication**: Secure login system with token verification.
-- **Blue-Themed Metric Cards**:
-  - `Total Applications` — Dark Navy Blue (`#16243a`)
-  - `Pending Review` — Deep Royal Blue (`#1e3a8a`)
-  - `Contacted / Active` — Bright Sapphire Blue (`#2563eb`)
-  - `Approved / Enrolled` — Vibrant Sky Blue (`#0284c7`)
-- **Strict 5-Stage Lead Pipeline**: `Pending` ➔ `Contacted` ➔ `In Review` ➔ `Approved` ➔ `Closed`.
-- **Search & Filtering**: Search by name, email, phone, or city; filter by status, destination country, program level, and date sort.
-- **Applicant Detail Drawer**: Full view of lead data, one-click status switcher, and internal admin notes history.
-- **Manual Lead Entry & CSV Export**: Add leads directly from the portal or export data into `.csv`.
+* **Hero Section (`HeroSection.jsx`)**:
+  * Dynamic zooming background image physics scaled seamlessly on scroll.
+  * Headline: *"Want to take-off in your career with a global education?"*
+  * Quick action *"Book Free Consultation"* CTA button with glowing arrow.
+  * Floating stats widget highlighting **12k+ students guided** with overlapping avatar badge.
+  * Tag pills highlighting key services (*Admissions*, *Student Visas*, *Scholarships*, *IELTS & TOEFL*, *Career Guidance*).
+
+* **About Us Section (`#about` / `AboutSection.jsx`)**:
+  * Overview of Fair Future's 18+ years milestone in Kerala.
+  * Highlights 100,000+ counselled students and 500+ represented global institutes.
+  * Cursive typography stats bar: **500+** Institutions, **10** Countries, **1L+** Counselled, **12k** Abroad, **18+** Years.
+  * Floating image cards for a warm human touch.
+
+* **Why Choose Us Section (`#why` / `WhyUsSection.jsx`)**:
+  * *The Fair Future Difference*: Highlights 4 core pillars:
+    1. **12,000+ Success Stories**: Transparent, high-success guidance.
+    2. **Certified Experts**: Backed by certified overseas counselors.
+    3. **500+ Top Institutes**: University admissions, scholarships, and fee assistance.
+    4. **100% Satisfaction**: Stress-free visa approvals.
+
+* **Global Presence Banner (`GlobalPresenceSection.jsx`)**:
+  * Interactive 3D Velaris canvas background with floating light particles.
+  * Call-to-action banner for international university destinations.
+
+* **Consultation Process Section (`#process` / `ProcessSection.jsx`)**:
+  * 5-step interactive workflow detailing the student journey:
+    * **Step 01**: Shortlisting Universities
+    * **Step 02**: Application & Admission
+    * **Step 03**: Visa Guidance & Processing
+    * **Step 04**: Scholarship & Fee Assistance
+    * **Step 05**: Pre-Departure Orientation
+
+* **Certified Counselors Section (`#counselors` / `CounselorsSection.jsx`)**:
+  * Profile cards showcasing senior counselors (Dr. Rajesh Varma, Priya Sundaram, Arun K. Nambiar).
+  * Badge confirming official university representation across Canada, UK, USA, Australia, and Europe.
+
+* **Alumni Testimonials Carousel (`#testimonials` / `TestimonialsSection.jsx`)**:
+  * Draggable & auto-playing review carousel with star ratings and country tags (Canada, UK, Australia, Germany, Sweden, Ireland, USA, New Zealand).
+  * Smooth navigation arrows and pagination indicator dots.
+
+* **FAQ Accordion Section (`#faq` / `FaqSection.jsx`)**:
+  * Interactive country guideline filter tabs (**Canada Guidelines**, **UK Guidelines**).
+  * Expandable accordion items answering questions on tuition costs, visa processing times, required tests (IELTS/TOEFL), medical/PCC requirements, and post-study work permits (PGWP / Graduate Route).
+  * Support helper card for booking 1-on-1 counseling calls.
+
+* **Footer Banner & Links (`FooterSection.jsx`)**:
+  * Glassmorphic newsletter subscription card.
+  * Country destination shortcuts, service list, main branch contact details, and copyright bar.
+
+---
+
+### 📝 2. Multi-Step Consultation Booking Form (`/form`)
+An intuitive, step-by-step application form designed to convert prospective study abroad applicants:
+
+* **Step 1: Contact Information**:
+  * Full Name, Email Address, Mobile Phone Number, Current City.
+* **Step 2: Destination & Program Preference**:
+  * Preferred destination country (Australia, Canada, Dubai, France, Germany, Ireland, New Zealand, Singapore, Sweden, UK, USA).
+  * Preferred study level (Undergraduate, Postgraduate / Master's, Doctorate / PhD, Diploma / Certificate).
+* **Step 3: Academic & Financial Profile**:
+  * Current education qualification, estimated tuition budget, financial planning options.
+* **Step 4: Intake & Timeline**:
+  * Target intake season (Fall, Spring, Summer) and preferred start year.
+* **Real-Time Validation & Instant API Submission**:
+  * Strict client-side validation preventing blank/malformed entries.
+  * Directly submits data to backend REST API endpoint (`POST /api/applications`).
 
 ---
 
 ## 🎨 Design System & Visual Tokens
 
 ### 🔤 Typography & Fonts
-- **Primary Body Font**: `'Inter', system-ui, -apple-system, sans-serif` — Crisp, legible body text.
-- **Heading Font**: `'Outfit', system-ui, -apple-system, sans-serif` — Modern, geometric display headings.
-- **Accent Highlight Font**: `font-serif italic font-medium` — Elegant serif styling for key title phrases (e.g., *Fair Future*, *Study Abroad*, *Successful Students*).
+* **Primary Body Font**: `'Inter', system-ui, -apple-system, sans-serif` — Crisp, legible body text.
+* **Heading Font**: `'Outfit', system-ui, -apple-system, sans-serif` — Modern, geometric display headings.
+* **Accent Serif Font**: `font-serif italic font-medium` — Elegant typography accent applied to key phrases (*Fair Future*, *Around the World*, *Consultation Process*, *Successful Students*, *Asked Questions*).
 
 ### 🎨 Color Palette
 | Token Name | Hex Code | Purpose / Usage |
 | :--- | :--- | :--- |
 | **Dark Background** | `#0c0f16` | Main dark background theme for homepage & hero |
-| **Brand Navy** | `#16243a` | Navbar header, brand cards & primary admin headers |
+| **Brand Navy** | `#16243a` | Navbar header, brand cards & primary headers |
 | **Primary Navy Accent** | `#233d63` | Buttons, form step indicators, pill tags & borders |
 | **Accent Sky Blue** | `#60a5fa` | Highlights, active icons & shiny CTA gradient borders |
 | **Light Surface** | `#faf9f7` / `#f8f9fa` | Soft cream background for forms & content sections |
-| **Status Card 1 (Total)** | `#16243a` | Dark Navy Blue stat card |
-| **Status Card 2 (Pending)** | `#1e3a8a` | Deep Royal Blue stat card |
-| **Status Card 3 (Contacted)** | `#2563eb` | Bright Sapphire Blue stat card |
-| **Status Card 4 (Approved)** | `#0284c7` | Vibrant Sky Blue stat card |
 
 ---
 
-## 📁 Project Architecture & Folder Structure
+## 📁 Component Architecture (`client/src/`)
 
 ```text
-GoZoop/
-├── client/                     # Frontend Vite + React 19 + Tailwind v4
-│   ├── public/
-│   │   └── favicon.svg         # SVG Brand Favicon
-│   ├── src/
-│   │   ├── assets/             # Brand graphics & process images
-│   │   ├── components/
-│   │   │   ├── Navbar.jsx      # Scroll-spy responsive navigation
-│   │   │   ├── PageLoader.jsx  # SVG fill loading overlay
-│   │   │   ├── SEO.jsx         # Dynamic meta tags & OG data manager
-│   │   │   └── Velaris.jsx    # Interactive 3D/Canvas component
-│   │   ├── hooks/
-│   │   │   └── usePageLoader.js# Optimized loading controller (<800ms)
-│   │   ├── page/
-│   │   │   ├── home.jsx        # Landing page with section headings
-│   │   │   ├── form.jsx        # Multi-step consultation booking page
-│   │   │   └── admin/
-│   │   │       ├── AdminPage.jsx            # Top-level auth wrapper
-│   │   │       ├── AdminLogin.jsx           # Admin login interface
-│   │   │       ├── AdminDashboard.jsx       # Metrics, table & toolbar
-│   │   │       ├── ApplicationDetailModal.jsx# Lead detail & notes modal
-│   │   │       └── AddLeadModal.jsx         # Manual lead entry modal
-│   │   ├── App.jsx             # React Router route definitions
-│   │   ├── index.css           # Global Tailwind v4 design tokens & CSS
-│   │   └── main.jsx            # React root entry point
-│   ├── index.html              # HTML5 root with primary & OG metadata
-│   ├── package.json            # Client dependencies
-│   └── vite.config.js          # Vite config with API proxy settings
-│
-└── server/                     # Backend Node.js + Express REST API
-    ├── config/
-    │   └── db.js               # MongoDB connection handler
-    ├── controllers/
-    │   ├── adminController.js  # JWT Auth & default admin seeder
-    │   └── applicationController.js # Lead CRUD & analytics controller
-    ├── middleware/
-    │   ├── authMiddleware.js   # JWT token protection middleware
-    │   ├── errorHandler.js     # Centralized 404 & 500 error handler
-    │   └── validationMiddleware.js # Express-validator sanitization
-    ├── models/
-    │   ├── Admin.js            # Admin user Mongoose schema (bcrypt)
-    │   └── Application.js      # Lead submission Mongoose schema
-    ├── routes/
-    │   ├── adminRoutes.js      # Routes for /api/admin
-    │   └── applicationRoutes.js# Routes for /api/applications
-    ├── .env                    # Environment config (Port, Mongo URI, JWT)
-    ├── package.json            # Server dependencies
-    └── server.js               # Express application entry point
+client/src/
+├── components/
+│   ├── home/                        # Modular Landing Page Sections
+│   │   ├── HeroSection.jsx          # Hero header & zooming background
+│   │   ├── AboutSection.jsx         # About us & stats counter bar
+│   │   ├── WhyUsSection.jsx        # The Fair Future Difference cards
+│   │   ├── GlobalPresenceSection.jsx# 3D Velaris global presence banner
+│   │   ├── ProcessSection.jsx       # 5-step consultation workflow
+│   │   ├── CounselorsSection.jsx    # Certified counselors profile cards
+│   │   ├── TestimonialsSection.jsx  # Draggable alumni review carousel
+│   │   ├── FaqSection.jsx           # Country guideline accordion
+│   │   └── FooterSection.jsx        # Newsletter card & footer links
+│   ├── Navbar.jsx                   # Scroll-spy responsive navigation bar
+│   ├── PageLoader.jsx               # SVG fill loading overlay (<800ms)
+│   ├── SEO.jsx                      # Open Graph, Twitter & Meta manager
+│   └── Velaris.jsx                  # Interactive WebGL canvas component
+├── page/
+│   ├── home.jsx                     # Landing page main entry point
+│   ├── form.jsx                     # Multi-step consultation booking page
+│   └── admin/                       # Protected admin lead dashboard
 ```
 
 ---
 
-## 🔌 API Endpoints Summary
-
-### 🔓 Public Endpoints
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `GET` | `/api/health` | Service health check |
-| `POST` | `/api/applications` | Submit new consultation application |
-
-### 🔒 Protected Admin Endpoints (`Authorization: Bearer <token>`)
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `POST` | `/api/admin/login` | Admin login & JWT token issuance |
-| `GET` | `/api/admin/me` | Retrieve currently authenticated admin |
-| `GET` | `/api/applications` | Get applications (search, filter, paginate, sort) |
-| `GET` | `/api/applications/:id` | Get single application details |
-| `PATCH` | `/api/applications/:id/status` | Update lead status (`Pending`, `Contacted`, etc.) |
-| `POST` | `/api/applications/:id/notes` | Add internal admin comment |
-| `DELETE` | `/api/applications/:id` | Delete application record |
-| `GET` | `/api/applications/analytics/overview` | Fetch metric overview statistics |
-
----
-
-## 🔑 Default Admin Credentials
-
-Upon server startup, a default admin user is automatically seeded:
-
-```text
-Email: admin@fairfuture.com
-Password: Admin@123456
-```
-
----
+## ⚡ Performance & Open Graph Features
+* **Sub-Second Initial Load**: Page loader threshold capped under 800ms for instant initial rendering.
+* **WhatsApp & Social Link Previews**: Built-in Open Graph metadata (`og:title`, `og:description`, `og:image`) featuring a compressed 63KB preview banner (`og-banner.jpg`).
+* **Vercel SPA Route Rewrites**: Configured with `vercel.json` rewrite rules to prevent 404 errors on subroutes like `/form` upon page refresh.
 
 ---
 
 ## 💻 How to Run Locally
 
-### 1. **Start the Express Backend Server**
-```bash
-cd server
-npm start
-```
-*(Runs on `http://localhost:5000` & connects to MongoDB Atlas)*
-
-### 2. **Start the Vite Client Development Server**
+### 1. **Start the Frontend Development Server**
 ```bash
 cd client
 npm run dev
 ```
 *(Runs on `http://localhost:5173`)*
 
----
-
-## ⚡ Build for Production
-
+### 2. **Build for Production**
 ```bash
 cd client
 npm run build
