@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { X, Plus, AlertCircle } from 'lucide-react';
 import { getApiUrl } from '../../lib/api';
+import SearchableSelect from '../../components/ui/SearchableSelect';
+import PhoneInput from '../../components/ui/PhoneInput';
+import {
+  INDIAN_STATES_AND_UTS,
+  POPULAR_CITIES,
+  getStateForCity,
+  getCitiesForState,
+} from '../../data/locations';
 
 const COUNTRIES = [
   "Australia", "Canada", "Dubai (UAE)", "France", "Germany",
@@ -18,6 +26,14 @@ const BUDGETS = [
 
 const TIMELINES = [
   "Within 3 months", "6 months", "1 year", "1–2 years", "Exploring"
+];
+
+const PASSOUT_YEARS = [
+  "2032", "2031", "2030", "2029", "2028", "2027",
+  "2026", "2025", "2024", "2023", "2022", "2021",
+  "2020", "2019", "2018", "2017", "2016", "2015",
+  "2014", "2013", "2012", "2011", "2010", "2009",
+  "2008", "2007", "2006", "2005", "2000–2004", "Before 2000"
 ];
 
 export default function AddLeadModal({ onClose, onAddLead }) {
@@ -48,6 +64,30 @@ export default function AddLeadModal({ onClose, onAddLead }) {
     setForm((f) => ({ ...f, [key]: val }));
   };
 
+  const handleCityChange = (cityName) => {
+    setError('');
+    let autoState = form.state;
+    if (cityName) {
+      const foundState = getStateForCity(cityName);
+      if (foundState) {
+        autoState = foundState;
+      }
+    }
+    setForm((f) => ({ ...f, city: cityName, state: autoState }));
+  };
+
+  const handleStateChange = (stateName) => {
+    setError('');
+    let updatedCity = form.city;
+    if (form.city && stateName) {
+      const cityState = getStateForCity(form.city);
+      if (cityState && cityState.toLowerCase() !== stateName.toLowerCase()) {
+        updatedCity = '';
+      }
+    }
+    setForm((f) => ({ ...f, state: stateName, city: updatedCity }));
+  };
+
   const toggleCountry = (c) => {
     setError('');
     const current = form.destCountries;
@@ -61,8 +101,29 @@ export default function AddLeadModal({ onClose, onAddLead }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!form.firstName.trim() || !form.lastName.trim()) {
+      setError('Applicant full name is required');
+      return;
+    }
+    if (!form.email.trim()) {
+      setError('Valid email address is required');
+      return;
+    }
+    const cleanDigits = (form.phone || '').replace(/\D/g, '');
+    if (cleanDigits.length !== 10) {
+      setError('Please provide a valid 10-digit phone number');
+      return;
+    }
+    if (!form.city.trim() || !form.state.trim()) {
+      setError('City and State are required');
+      return;
+    }
     if (!form.destCountries || form.destCountries.length === 0) {
       setError('Please select at least one preferred destination country');
+      return;
+    }
+    if (!form.yearOfPassout) {
+      setError('Passout year is required');
       return;
     }
 
@@ -89,6 +150,10 @@ export default function AddLeadModal({ onClose, onAddLead }) {
       setLoading(false);
     }
   };
+
+  const cityOptions = form.state
+    ? [...getCitiesForState(form.state), ...POPULAR_CITIES.filter(c => c.state.toLowerCase() !== form.state.toLowerCase())]
+    : POPULAR_CITIES;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm overflow-y-auto">
@@ -159,41 +224,38 @@ export default function AddLeadModal({ onClose, onAddLead }) {
               />
             </div>
             <div>
-              <label className="font-bold text-slate-500 uppercase tracking-wider block mb-1">Phone Number *</label>
-              <input
-                type="tel"
+              <PhoneInput
+                id="admin-phone"
+                label="Phone Number"
                 required
                 value={form.phone}
-                onChange={(e) => set('phone')(e.target.value)}
-                placeholder="+91 98765 43210"
-                className="w-full h-10 px-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#16243a]"
+                onChange={(val) => set('phone')(val)}
+                placeholder="98765 43210"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label className="font-bold text-slate-500 uppercase tracking-wider block mb-1">City *</label>
-              <input
-                type="text"
-                required
-                value={form.city}
-                onChange={(e) => set('city')(e.target.value)}
-                placeholder="Mumbai"
-                className="w-full h-10 px-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#16243a]"
-              />
-            </div>
-            <div>
-              <label className="font-bold text-slate-500 uppercase tracking-wider block mb-1">State *</label>
-              <input
-                type="text"
-                required
-                value={form.state}
-                onChange={(e) => set('state')(e.target.value)}
-                placeholder="Maharashtra"
-                className="w-full h-10 px-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#16243a]"
-              />
-            </div>
+            <SearchableSelect
+              id="admin-city"
+              label="City"
+              required
+              options={cityOptions}
+              value={form.city}
+              onChange={handleCityChange}
+              placeholder="Select or search city"
+              searchPlaceholder="Type city name..."
+            />
+            <SearchableSelect
+              id="admin-state"
+              label="State"
+              required
+              options={INDIAN_STATES_AND_UTS}
+              value={form.state}
+              onChange={handleStateChange}
+              placeholder="Select State / UT"
+              searchPlaceholder="Type state name..."
+            />
           </div>
 
           {/* Preferred Countries */}
@@ -261,14 +323,14 @@ export default function AddLeadModal({ onClose, onAddLead }) {
             </div>
             <div>
               <label className="font-bold text-slate-500 uppercase tracking-wider block mb-1">Passout Year *</label>
-              <input
-                type="number"
-                required
+              <select
                 value={form.yearOfPassout}
                 onChange={(e) => set('yearOfPassout')(e.target.value)}
-                placeholder="2024"
-                className="w-full h-10 px-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#16243a]"
-              />
+                className="w-full h-10 px-3 border border-slate-200 rounded-xl text-sm bg-white focus:outline-none focus:border-[#16243a]"
+              >
+                <option value="" disabled>Select passout year</option>
+                {PASSOUT_YEARS.map((y) => <option key={y} value={y}>{y}</option>)}
+              </select>
             </div>
           </div>
 

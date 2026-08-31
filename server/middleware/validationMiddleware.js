@@ -20,7 +20,12 @@ export const validateApplication = [
   body("firstName").trim().notEmpty().withMessage("First name is required"),
   body("lastName").trim().notEmpty().withMessage("Last name is required"),
   body("email").trim().isEmail().withMessage("Please enter a valid email address").normalizeEmail(),
-  body("phone").trim().notEmpty().withMessage("Phone number is required"),
+  body("phone")
+    .trim()
+    .notEmpty()
+    .withMessage("Phone number is required")
+    .matches(/^[0-9+\s()-]{10,15}$/)
+    .withMessage("Please enter a valid 10-digit phone number"),
   body("city").trim().notEmpty().withMessage("City is required"),
   body("state").trim().notEmpty().withMessage("State is required"),
   body("destCountries")
